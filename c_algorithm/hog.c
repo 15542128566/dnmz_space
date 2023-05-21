@@ -213,9 +213,7 @@ int *calHistOfGrad(unsigned char *src, int col, int row, int num_bins, int cell_
                     for (int m = 0; m < num_bins; ++m)
                     {
                         idx = (i * block_col_nums + j) * block_size * block_size * num_bins + (k * cell_size + t) * num_bins + m;
-                        int res = round(hist[idx] / (block_sum + 1e-6)); // +1e-6防止被除数为零的情况
-                        hist[idx] = res;
-                        // hist[idx] /= (block_sum - 1e-6); // +1e-6防止被除数为零的情况
+                        hist[idx] = round(hist[idx] / (block_sum + 1e-6)); // +1e-6防止被除数为零的情况
                     }
                 }
             }
