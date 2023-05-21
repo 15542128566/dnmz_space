@@ -1,49 +1,49 @@
 #include <gtest/gtest.h>
 #include "../c_algorithm/hog.c"
 
-// // 测试gtest
-// TEST(ExampleTests, DemonstrateGTestMacros)
-// {
-//     EXPECT_TRUE(true) << "Hello, world!";
-//     EXPECT_EQ(true, true) << "Fuck, world!";
-// }
+// 测试gtest
+TEST(ExampleTests, DemonstrateGTestMacros)
+{
+    EXPECT_TRUE(true) << "Hello, world!";
+    EXPECT_EQ(true, true) << "Fuck, world!";
+}
 
-// // 测试图像像素灰度化函数 rgbToGray
-// TEST(testGray, rgbToGray)
-// {
-//     unsigned char rgb[16 * 3] = {1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 4,
-//                                  4, 4, 4, 3, 3, 3, 2, 2, 2, 1, 1, 1,
-//                                  1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3,
-//                                  4, 5, 6, 4, 5, 6, 4, 5, 6, 4, 5, 6};
-//     unsigned char *src = rgb;
-//     unsigned char *gray = rgbToGray(src, 4, 4);
-//     unsigned char expectexpectGrayArr[16] = {1, 2, 3, 4, 4, 3, 2, 1, 1, 1, 1, 1, 4, 4, 4, 4};
-//     unsigned char *expectGray = expectexpectGrayArr;
-//     for (int i = 0; i < 16; ++i)
-//     {
-//         EXPECT_EQ(
-//             expectGray[i],
-//             gray[i])
-//             << "i=" << i << ",gray_i=" << static_cast<int>(gray[i]);
-//     };
-// }
+// 测试图像像素灰度化函数 rgbToGray
+TEST(testGray, rgbToGray)
+{
+    unsigned char rgb[16 * 3] = {1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 4,
+                                 4, 4, 4, 3, 3, 3, 2, 2, 2, 1, 1, 1,
+                                 1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3,
+                                 4, 5, 6, 4, 5, 6, 4, 5, 6, 4, 5, 6};
+    unsigned char *src = rgb;
+    unsigned char *gray = rgbToGray(src, 4, 4);
+    unsigned char expectexpectGrayArr[16] = {1, 2, 3, 4, 4, 3, 2, 1, 1, 1, 1, 1, 4, 4, 4, 4};
+    unsigned char *expectGray = expectexpectGrayArr;
+    for (int i = 0; i < 16; ++i)
+    {
+        EXPECT_EQ(
+            expectGray[i],
+            gray[i])
+            << "i=" << i << ",gray_i=" << static_cast<int>(gray[i]);
+    };
+}
 
-// // 测试图像像素归一化函数 normalizeImage
-// TEST(testNormalize, normalizeImage)
-// {
-//     unsigned char src_arr[16] = {1, 2, 3, 4, 4, 3, 2, 1, 1, 1, 1, 1, 4, 4, 4, 4};
-//     unsigned char *src = src_arr;
-//     unsigned char *norm = normalizeImage(src, 4, 4);
-//     unsigned char expertNormArr[16] = {0, 85, 170, 255, 255, 170, 85, 0, 0, 0, 0, 0, 255, 255, 255, 255};
-//     unsigned char *expectNorm = expertNormArr;
-//     for (int i = 0; i < 16; ++i)
-//     {
-//         EXPECT_EQ(
-//             expectNorm[i],
-//             norm[i])
-//             << "i=" << i << ",norm_i=" << static_cast<int>(norm[i]);
-//     };
-// }
+// 测试图像像素归一化函数 normalizeImage
+TEST(testNormalize, normalizeImage)
+{
+    unsigned char src_arr[16] = {1, 2, 3, 4, 4, 3, 2, 1, 1, 1, 1, 1, 4, 4, 4, 4};
+    unsigned char *src = src_arr;
+    unsigned char *norm = normalizeImage(src, 4, 4);
+    unsigned char expertNormArr[16] = {0, 85, 170, 255, 255, 170, 85, 0, 0, 0, 0, 0, 255, 255, 255, 255};
+    unsigned char *expectNorm = expertNormArr;
+    for (int i = 0; i < 16; ++i)
+    {
+        EXPECT_EQ(
+            expectNorm[i],
+            norm[i])
+            << "i=" << i << ",norm_i=" << static_cast<int>(norm[i]);
+    };
+}
 
 // 测试均值滤波处理 meanFilter
 TEST(testMeanFilter, meanFilter)
