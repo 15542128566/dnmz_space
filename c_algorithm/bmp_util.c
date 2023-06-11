@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdint.h>
+#include "sift.h"
 
 #pragma pack(1) // 结构体内存对齐设置为1字节
 
@@ -234,6 +235,138 @@ void save_double_mat_txt(DoubleMat *double_mat, int idx, int type)
         }
         fprintf(fp, "\n"); // 换行
     }
+
+    fclose(fp); // 关闭文件
+}
+
+void save_key_points_txt(PointList *point_list, int type)
+{
+    FILE *fp;
+
+    char filepath[60];
+    char num[5];
+    char suffix[5];
+    switch (type)
+    {
+    case 0:
+        strcpy(filepath, "C:\\Users\\A\\Desktop\\sift\\sift_descriptor_res\\key_points");
+        break;
+    default:
+        strcpy(filepath, "C:\\Users\\A\\Desktop\\sift\\sift_descriptor_res\\key_points");
+        break;
+    }
+    strcpy(suffix, ".txt");
+    strcat(filepath, suffix);
+    fp = fopen(filepath, "w");
+    if (fp == NULL)
+    {
+        printf("File open error!");
+        return;
+    }
+    Point point;
+    for (int i = 0; i < point_list->length; i++)
+    {
+        point = point_list->point_list[i];
+        fprintf(fp, "%f ", point.posX); // 将数组元素以空格分隔写入文件
+        fprintf(fp, "%f ", point.posY);
+        fprintf(fp, "%d ", point.posOS);
+        fprintf(fp, "%f ", point.imgScale);
+        fprintf(fp, "%f ", point.direction);
+        fprintf(fp, "\n"); // 换行
+    }
+
+    fclose(fp); // 关闭文件
+}
+
+void save_descriptor_txt(DescriptorList *dpr_list, int type)
+{
+    FILE *fp;
+
+    char filepath[60];
+    char num[5];
+    char suffix[5];
+    switch (type)
+    {
+    case 0:
+        strcpy(filepath, "C:\\Users\\A\\Desktop\\sift\\sift_descriptor_res\\descriptor");
+        break;
+    default:
+        strcpy(filepath, "C:\\Users\\A\\Desktop\\sift\\sift_descriptor_res\\descriptor");
+        break;
+    }
+    strcpy(suffix, ".txt");
+    strcat(filepath, suffix);
+    fp = fopen(filepath, "w");
+    if (fp == NULL)
+    {
+        printf("File open error!");
+        return;
+    }
+    Descriptor dpr;
+    for (int i = 0; i < dpr_list->length; i++)
+    {
+        dpr = dpr_list->descriptor_list[i];
+        for (int j = 0; j < dpr.length; j++)
+        {
+            fprintf(fp, "%f ", dpr.data[j]); // 将数组元素以空格分隔写入文件
+        }
+        fprintf(fp, "\n"); // 换行
+    }
+
+    fclose(fp); // 关闭文件
+}
+
+void save_descriptor_tmp_txt(double *data, int len, int type)
+{
+    FILE *fp;
+
+    char filepath[60];
+    char num[5];
+    char suffix[5];
+    switch (type)
+    {
+    case 0:
+        strcpy(filepath, "C:\\Users\\A\\Desktop\\sift\\sift_descriptor_res\\x_list");
+        break;
+    case 1:
+        strcpy(filepath, "C:\\Users\\A\\Desktop\\sift\\sift_descriptor_res\\y_list");
+        break;
+    case 2:
+        strcpy(filepath, "C:\\Users\\A\\Desktop\\sift\\sift_descriptor_res\\rbin_list");
+        break;
+    case 3:
+        strcpy(filepath, "C:\\Users\\A\\Desktop\\sift\\sift_descriptor_res\\cbin_list");
+        break;
+    case 4:
+        strcpy(filepath, "C:\\Users\\A\\Desktop\\sift\\sift_descriptor_res\\w_list");
+        break;
+    case 5:
+        strcpy(filepath, "C:\\Users\\A\\Desktop\\sift\\sift_descriptor_res\\mag_ist");
+        break;
+    case 6:
+        strcpy(filepath, "C:\\Users\\A\\Desktop\\sift\\sift_descriptor_res\\angle_list");
+        break;
+    case 7:
+        strcpy(filepath, "C:\\Users\\A\\Desktop\\sift\\sift_descriptor_res\\hist_list");
+        break;
+    default:
+        strcpy(filepath, "C:\\Users\\A\\Desktop\\sift\\sift_descriptor_res\\descriptor");
+        break;
+    }
+    strcpy(suffix, ".txt");
+    strcat(filepath, suffix);
+    fp = fopen(filepath, "w");
+    if (fp == NULL)
+    {
+        printf("File open error!");
+        return;
+    }
+    Descriptor dpr;
+    for (int i = 0; i < len; i++)
+    {
+        fprintf(fp, "%f ", data[i]); // 将数组元素以空格分隔写入文件
+    }
+    fprintf(fp, "\n"); // 换行
 
     fclose(fp); // 关闭文件
 }
